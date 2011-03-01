@@ -1,0 +1,24 @@
+id  : PasswordExpired
+key : passwordexpired
+name: Password Expired
+version: 0.1
+schema_version: 0.11
+author_name: Alfasado Inc.
+author_link: http://alfasado.net/
+description: <__trans phrase="Set the password expiration settings.">
+l10n_class: PasswordExpired::L10N
+config_settings:
+    PasswordExpired:
+        default: 0
+system_config_template: passwordexpired_cfg.tmpl
+settings:
+    pass_period:
+        Default: 30
+object_types:
+    author:
+        password_updated_on: datetime meta
+callbacks:
+    pre_run: $passwordexpired::PasswordExpired::Plugin::_passwordexpired
+    MT::App::CMS::template_param.dashboard: $passwordexpired::PasswordExpired::Plugin::_passwordexpired
+    MT::App::CMS::template_param.edit_author: $passwordexpired::PasswordExpired::Plugin::_passwordexpired
+    cms_post_save.author: $passwordexpired::PasswordExpired::Plugin::_cb_post_save_author
