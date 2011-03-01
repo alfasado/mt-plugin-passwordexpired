@@ -18,7 +18,7 @@ object_types:
     author:
         password_updated_on: datetime meta
 callbacks:
-    pre_run: $passwordexpired::PasswordExpired::Plugin::_passwordexpired
+    MT::App::CMS::pre_run: $passwordexpired::PasswordExpired::Plugin::_passwordexpired
     MT::App::CMS::template_param.dashboard: $passwordexpired::PasswordExpired::Plugin::_passwordexpired
     MT::App::CMS::template_param.edit_author: $passwordexpired::PasswordExpired::Plugin::_passwordexpired
     cms_post_save.author: $passwordexpired::PasswordExpired::Plugin::_cb_post_save_author
