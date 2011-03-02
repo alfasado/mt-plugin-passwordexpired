@@ -10,6 +10,8 @@ l10n_class: PasswordExpired::L10N
 config_settings:
     PasswordExpired:
         default: 0
+    PasswordExpiredPeriod:
+        default: 0
 system_config_template: passwordexpired_cfg.tmpl
 settings:
     pass_period:

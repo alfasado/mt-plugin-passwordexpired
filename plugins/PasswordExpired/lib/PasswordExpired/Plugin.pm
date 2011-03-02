@@ -29,7 +29,8 @@ sub _passwordexpired {
         $user->password_updated_on( $password_updated_on );
         $user->save or die $user->errstr;
     }
-    my $period = $plugin->get_config_value( 'pass_period' );
+    my $period = $app->component( 'PasswordExpiredPeriod' );
+    $period = $plugin->get_config_value( 'pass_period' ) unless $period;
     my $updated_ts = ts2epoch( undef, $password_updated_on );
     my $tz = $app->config( 'DefaultTimezone' );
     $tz = 0 unless $tz;
