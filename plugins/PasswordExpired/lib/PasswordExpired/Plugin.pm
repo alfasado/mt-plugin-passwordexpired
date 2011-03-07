@@ -22,6 +22,9 @@ sub _cb_post_save_author {
 sub _passwordexpired {
     my ( $cb, $app, $param, $tmpl ) = @_;
     my $user = $app->user;
+    if (! $user ) {
+        return 1;
+    }
     my $plugin = $app->component( 'PasswordExpired' );
     my $password_updated_on = $user->password_updated_on;
     if (! $password_updated_on ) {
@@ -50,6 +53,9 @@ sub _passwordexpired {
             }
         }
         if ( $cb->method eq 'pre_run' ) {
+            return;
+        }
+        if (! $tmpl ) {
             return;
         }
         my $innerHTML = $plugin->translate( 'Your password was last changed at [_1]. Please <a href="[_2]?__mode=view&amp;_type=author&amp;id=[_3]">change your password</a> periodically.',
