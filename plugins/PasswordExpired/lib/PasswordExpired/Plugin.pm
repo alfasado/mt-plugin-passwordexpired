@@ -62,9 +62,7 @@ sub _passwordexpired {
                                             $password_updated_on , $app->script, $user->id );
         if ( $mode eq 'edit_author' ) {
             if (! $param->{ error } ) {
-                $param->{ error } = 1;
-                my $nodeset = $tmpl->getElementById( 'generic-error' );
-                $nodeset->innerHTML( $innerHTML );
+                $param->{ error } = $innerHTML;
             }
         } else {
             if (! $param->{ permission } ) {
