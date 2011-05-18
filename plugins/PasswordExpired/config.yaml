@@ -11,7 +11,7 @@ config_settings:
     PasswordExpired:
         default: 0
     PasswordExpiredPeriod:
-        default: 0
+        default: 30
 system_config_template: passwordexpired_cfg.tmpl
 settings:
     pass_period:

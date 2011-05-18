@@ -32,7 +32,7 @@ sub _passwordexpired {
         $user->password_updated_on( $password_updated_on );
         $user->save or die $user->errstr;
     }
-    my $period = $app->component( 'PasswordExpiredPeriod' );
+    my $period = $app->config( 'PasswordExpiredPeriod' );
     $period = $plugin->get_config_value( 'pass_period' ) unless $period;
     my $updated_ts = ts2epoch( undef, $password_updated_on );
     my $tz = $app->config( 'DefaultTimezone' );
@@ -75,6 +75,7 @@ sub _passwordexpired {
     if ( $cb->method eq 'pre_run' ) {
         return;
     }
+    return unless $tmpl;
     if ( $mode eq 'edit_author' ) {
         my $nodeset = $tmpl->getElementById( 'show_password' );
         if ( $nodeset ) {
